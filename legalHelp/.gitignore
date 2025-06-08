@@ -1,0 +1,8 @@
+# Ignore environment variable file with API keys
+.env
+
+# Ignore Python bytecode files
+__pycache__/
+
+# Ignore contract summaries if you want
+contract_summary.txt

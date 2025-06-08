@@ -1,0 +1,396 @@
+```json
+{
+  "contract_basics": {
+    "title": "ODM - SUPPLY AGREEMENT",
+    "type": "Supply Agreement",
+    "effective_date": "2018-01-15",
+    "expiration_date": "2028-01-15",
+    "contract_value": "Not explicitly stated as a total fixed value; based on product purchases and book compensation.",
+    "governing_law": "Laws of England (English common and statutory Law)",
+    "contract_term_years": 10,
+    "auto_renewal": true,
+    "territory": "Global – All countries"
+  },
+  "parties": [
+    {
+      "legal_name": "ORGANIC PREPARATIONS INC.",
+      "common_name": "the Manufacturer",
+      "address": "2nd Floor, Transpacific Haus Lini Highway, Port Vila. Vanuatu",
+      "role": "Manufacturer",
+      "entity_type": "Corporation"
+    },
+    {
+      "legal_name": "AGAPE ATP INTERNATIONAL HOLDING LIMITED",
+      "common_name": "the Customer",
+      "address": "Unit 05, 4F, Energy Plaza No. 92, Granville Road Tsim Sha Tsui East Kowloon, Hong Kong",
+      "role": "Customer",
+      "entity_type": "Limited Company"
+    }
+  ],
+  "financial_details": {
+    "payment_terms": "50% of the Total Order Cost must be paid on placement of the customer’s order. The remaining 50% of the total order cost must be paid prior to the goods leaving the warehouse of the manufacturer.",
+    "total_value": "Not explicitly stated as a total fixed value; based on product purchases and book compensation.",
+    "payment_schedule": "50% on order placement, 50% prior to goods leaving manufacturer's warehouse.",
+    "late_payment_penalties": "Not explicitly stated.",
+    "currency": "AUD for book compensation, not specified for product purchases.",
+    "minimum_order_requirements": "86,500 units per annum across all listed products (Schedule B)."
+  },
+  "timeline_events": [
+    {
+      "date": "2018-01-15",
+      "event": "Contract Commencement",
+      "type": "milestone",
+      "responsible_party": "Both parties",
+      "notice_required": false,
+      "notice_deadline": "N/A",
+      "priority": "high",
+      "completed": true
+    },
+    {
+      "date": "2028-01-15",
+      "event": "Initial Term Expiration",
+      "type": "renewal",
+      "responsible_party": "Both parties",
+      "notice_required": true,
+      "notice_deadline": "2027-07-15",
+      "priority": "high",
+      "completed": false
+    },
+    {
+      "date": "2027-07-15",
+      "event": "Termination Notice Deadline for Initial Term",
+      "type": "deadline",
+      "responsible_party": "Either party",
+      "notice_required": true,
+      "notice_deadline": "2027-07-15",
+      "priority": "high",
+      "completed": false
+    },
+    {
+      "date": "Ongoing",
+      "event": "Manufacturer to provide 1 new product each quarter (minimum 4 per year)",
+      "type": "milestone",
+      "responsible_party": "Manufacturer",
+      "notice_required": false,
+      "notice_deadline": "N/A",
+      "priority": "medium",
+      "completed": false
+    },
+    {
+      "date": "7 days after receipt",
+      "event": "Customer's deadline to notify Manufacturer of defective product rejection",
+      "type": "deadline",
+      "responsible_party": "Customer",
+      "notice_required": true,
+      "notice_deadline": "N/A",
+      "priority": "medium",
+      "completed": false
+    },
+    {
+      "date": "7 days after RMA receipt",
+      "event": "Customer's deadline to return rejected product after receiving RMA number",
+      "type": "deadline",
+      "responsible_party": "Customer",
+      "notice_required": true,
+      "notice_deadline": "N/A",
+      "priority": "medium",
+      "completed": false
+    },
+    {
+      "date": "21 days from notification",
+      "event": "Breaching party's deadline to rectify breach",
+      "type": "deadline",
+      "responsible_party": "Breaching party",
+      "notice_required": true,
+      "notice_deadline": "N/A",
+      "priority": "high",
+      "completed": false
+    }
+  ],
+  "risk_factors": [
+    {
+      "risk_title": "Automatic Renewal with Short Notice",
+      "description": "The agreement automatically renews for subsequent ten (10) year terms. A six (6) months notice is required to terminate relations for reasons other than breach. Missing this notice period commits a party to another decade-long term.",
+      "category": "High",
+      "impact": "High",
+      "likelihood": "Medium",
+      "risk_score": 85,
+      "mitigation": "Implement a robust contract management system with automated alerts and reminders at least 7-9 months prior to each renewal date. Assign clear responsibility for monitoring and decision-making regarding renewal or termination. Ensure internal stakeholders are aware of the long-term commitment."
+    },
+    {
+      "risk_title": "Undefined Product Pricing",
+      "description": "The contract specifies minimum annual product purchase requirements (Schedule B) and payment terms (Clause 5.4) but does not explicitly define the unit price for the products. This leaves a critical financial term open to future negotiation or potential dispute.",
+      "category": "High",
+      "impact": "High",
+      "likelihood": "High",
+      "risk_score": 90,
+      "mitigation": "Immediately establish a separate, written agreement or addendum detailing the pricing for all products, including mechanisms for price adjustments (e.g., annual review, CPI linkage, raw material cost fluctuations). Ensure all purchase orders clearly state the agreed-upon prices before placement."
+    },
+    {
+      "risk_title": "Sole and Exclusive Agent Appointment",
+      "description": "The Manufacturer appoints the Customer as the sole and exclusive agent for promotion, sales, marketing, distribution, and administration of the Products globally. This significantly restricts the Manufacturer's ability to sell products directly or through other channels, creating high reliance on the Customer's performance.",
+      "category": "High",
+      "impact": "High",
+      "likelihood": "High",
+      "risk_score": 80,
+      "mitigation": "Manufacturer must closely monitor the Customer's performance against the 'best endeavours' covenant (Clause 4.3) and ensure minimum purchase requirements are consistently met. Consider negotiating performance-based termination clauses for exclusivity in future renewals or amendments if targets are not met."
+    },
+    {
+      "risk_title": "Global Territory and Compliance Burden",
+      "description": "The agreement covers 'Global – All countries' (Schedule C). Both parties covenant to comply with 'any and all Local Laws and Regulations' in 'all of the Territories' (Clauses 3.1, 4.1). This imposes an immense and complex compliance burden across numerous jurisdictions.",
+      "category": "High",
+      "impact": "High",
+      "likelihood": "High",
+      "risk_score": 92,
+      "mitigation": "Conduct a thorough legal and regulatory review for all target markets. Implement robust, centralized compliance programs and engage local legal counsel in key jurisdictions to ensure adherence to diverse local laws, including business practice, workplace relations, safety, and taxation."
+    },
+    {
+      "risk_title": "Intellectual Property Complexity and Transfer",
+      "description": "The Manufacturer owns IP for products and a specific book. The Customer is granted first right of refusal to purchase product IP and is appointed copyright holder for the book (with compensation). This creates a complex IP landscape with potential for disputes over ownership, usage, and future rights, especially regarding the book's copyright and future product IP transfers.",
+      "category": "High",
+      "impact": "High",
+      "likelihood": "Medium",
+      "risk_score": 88,
+      "mitigation": "Clearly define the scope of all IP rights and licenses granted or transferred. Ensure all IP assignments and transfers are properly documented, registered, and comply with relevant IP laws. Establish clear valuation methods and processes for any future IP purchases or transfers to avoid disputes."
+    },
+    {
+      "risk_title": "Subjective 'Best Endeavours' for Market Penetration",
+      "description": "The Customer covenants to give its 'best endeavours' to establish and develop a market for the Products with maximum market penetration (Clause 4.3). This is a subjective standard that is difficult to measure and enforce, potentially leading to underperformance without a clear breach.",
+      "category": "Medium",
+      "impact": "Medium",
+      "likelihood": "Medium",
+      "risk_score": 65,
+      "mitigation": "Supplement this clause with clear, measurable Key Performance Indicators (KPIs) and specific sales targets in an addendum. Link the Customer's continued exclusivity or renewal terms to the achievement of these measurable performance metrics."
+    },
+    {
+      "risk_title": "Manufacturer's New Product Development Obligation",
+      "description": "The Manufacturer agrees to provide the Customer with one new product each quarter, for a minimum of four (4) new products per year, and grant exclusive marketing/sales rights to the Customer for these new products (Clause 14.8). This is a significant and ongoing R&D commitment for the Manufacturer.",
+      "category": "Medium",
+      "impact": "Medium",
+      "likelihood": "Medium",
+      "risk_score": 70,
+      "mitigation": "Manufacturer should ensure its R&D capacity and resources align with this continuous commitment. Define 'new product' and establish clear acceptance criteria for the Customer. Customer should have a defined process for evaluating and accepting/rejecting new products to avoid disputes."
+    },
+    {
+      "risk_title": "Broad Change of Control Termination Rights",
+      "description": "Either party has the right to summarily terminate the agreement if control of the other party passes to persons regarded as 'unsuitable' in their absolute discretion, or if voting stock transfer results in a change in effective control, ownership, or active management (Clause 7.3(e), (f)). This is a broad and subjective termination right.",
+      "category": "High",
+      "impact": "High",
+      "likelihood": "Low",
+      "risk_score": 82,
+      "mitigation": "Parties should seek to define 'unsuitable' or agree on a more objective standard for change of control. Be acutely aware of this clause during any merger, acquisition, or significant equity transfer discussions, as it could trigger an unwanted termination."
+    },
+    {
+      "risk_title": "Absence of Explicit Late Payment Penalties",
+      "description": "While payment terms are clearly defined (50% upfront, 50% before shipment), the agreement does not specify any penalties or interest for late payments. This could lead to cash flow issues for the Manufacturer and provides no explicit incentive for the Customer to make timely payments beyond the pre-shipment requirement.",
+      "category": "Medium",
+      "impact": "Medium",
+      "likelihood": "High",
+      "risk_score": 75,
+      "mitigation": "Seek to amend the agreement to include standard late payment interest clauses (e.g., 1.5% per month on overdue amounts). Implement strict internal processes for tracking payments and promptly following up on any delays. Consider requiring full upfront payment for new customers or those with a history of payment issues."
+    }
+  ],
+  "products_services": [
+    {
+      "name": "ATP 1S Survivor Select",
+      "description": "Product for health and wellness, part of the ATP product line.",
+      "quantity_text": "15,000 150gm packaged units per Annum",
+      "quantity_numeric": 15000,
+      "unit": "150gm packaged units",
+      "specifications": "Packaged in 150gm units.",
+      "price": "Not specified in contract.",
+      "schedule_reference": "Schedule A, Schedule B"
+    },
+    {
+      "name": "ATP 2 Energized Mineral Concentrate",
+      "description": "Product for health and wellness, part of the ATP product line.",
+      "quantity_text": "20,000 29.5mL packaged units per Annum",
+      "quantity_numeric": 20000,
+      "unit": "29.5mL packaged units",
+      "specifications": "Packaged in 29.5mL units.",
+      "price": "Not specified in contract.",
+      "schedule_reference": "Schedule A, Schedule B"
+    },
+    {
+      "name": "ATP 3 Ionized Cal-Mag",
+      "description": "Product for health and wellness, part of the ATP product line.",
+      "quantity_text": "15,000 114gm packaged units per Annum",
+      "quantity_numeric": 15000,
+      "unit": "114gm packaged units",
+      "specifications": "Packaged in 114gm units.",
+      "price": "Not specified in contract.",
+      "schedule_reference": "Schedule A, Schedule B"
+    },
+    {
+      "name": "ATP 4 Omega Blend",
+      "description": "Product for health and wellness, part of the ATP product line.",
+      "quantity_text": "15,000 250mL packaged units per Annum",
+      "quantity_numeric": 15000,
+      "unit": "250mL packaged units",
+      "specifications": "Packaged in 250mL units.",
+      "price": "Not specified in contract.",
+      "schedule_reference": "Schedule A, Schedule B"
+    },
+    {
+      "name": "ATP 5 BetaMaxx",
+      "description": "Product for health and wellness, part of the ATP product line.",
+      "quantity_text": "15,000 150gm packaged units per Annum",
+      "quantity_numeric": 15000,
+      "unit": "150gm packaged units",
+      "specifications": "Packaged in 150gm units.",
+      "price": "Not specified in contract.",
+      "schedule_reference": "Schedule A, Schedule B"
+    },
+    {
+      "name": "AGP 1 Iron",
+      "description": "Product for health and wellness.",
+      "quantity_text": "1,000 29.5mL packaged units per Annum",
+      "quantity_numeric": 1000,
+      "unit": "29.5mL packaged units",
+      "specifications": "Packaged in 29.5mL units.",
+      "price": "Not specified in contract.",
+      "schedule_reference": "Schedule A, Schedule B"
+    },
+    {
+      "name": "YFA Young Formula",
+      "description": "Product for health and wellness.",
+      "quantity_text": "3,000 450gm packaged units per Annum",
+      "quantity_numeric": 3000,
+      "unit": "450gm packaged units",
+      "specifications": "Packaged in 450gm units.",
+      "price": "Not specified in contract.",
+      "schedule_reference": "Schedule A, Schedule B"
+    },
+    {
+      "name": "ORYC Organic Soap",
+      "description": "Organic soap product.",
+      "quantity_text": "2,500 150gm packaged units per Annum",
+      "quantity_numeric": 2500,
+      "unit": "150gm packaged units",
+      "specifications": "Packaged in 150gm units.",
+      "price": "Not specified in contract.",
+      "schedule_reference": "Schedule A, Schedule B"
+    },
+    {
+      "name": "How to Achieve Super Health beyond 2000 – Advanced Edition",
+      "description": "Book authored by Frank D.P. Ellis and Dr. Michael Tait M.D. (English and Chinese versions). Customer appointed copyright holder.",
+      "quantity_text": "Not specified, based on printing runs",
+      "quantity_numeric": null,
+      "unit": "book",
+      "specifications": "English and Chinese versions. Customer to provide prior notification of printing runs and quantity.",
+      "price": "AUD 1.00 per book (compensation to Manufacturer)",
+      "schedule_reference": "Clause 11, Clause 14.10"
+    }
+  ],
+  "key_terms": [
+    {
+      "term": "Manufacturer",
+      "definition": "ORGANIC PREPARATIONS INC., responsible for manufacturing and supplying products.",
+      "importance": "Critical"
+    },
+    {
+      "term": "Customer",
+      "definition": "AGAPE ATP INTERNATIONAL HOLDING LIMITED, appointed to be the sole and exclusive agent for the promotion, sales, marketing, distribution and administration of the Products.",
+      "importance": "Critical"
+    },
+    {
+      "term": "Products",
+      "definition": "The specific items listed in Schedule A of the agreement, including various ATP, AGP, YFA, and ORYC branded products.",
+      "importance": "Critical"
+    },
+    {
+      "term": "Territories",
+      "definition": "The geographical scope of the agreement, explicitly defined as 'Global – All countries' in Schedule C.",
+      "importance": "High"
+    },
+    {
+      "term": "Term",
+      "definition": "The duration of the agreement, commencing upon execution for ten (10) years, with automatic renewals for subsequent ten (10) year terms.",
+      "importance": "High"
+    },
+    {
+      "term": "Intellectual Property",
+      "definition": "Pertains to the products listed in Schedule A and the book 'How to Achieve Super Health beyond 2000 – Advanced Edition', owned by the Manufacturer, with specific rights and first right of refusal granted to the Customer.",
+      "importance": "High"
+    },
+    {
+      "term": "Sole and Exclusive Agent",
+      "definition": "The Customer's role, appointed by the Manufacturer, granting exclusive rights for promotion, sales, marketing, distribution, and administration of the products in the specified territories.",
+      "importance": "Critical"
+    },
+    {
+      "term": "Ex Works",
+      "definition": "An Incoterm specifying that products are delivered to the destination Ex Works, meaning the Manufacturer makes the goods available at its own premises, and the Customer bears all costs and risks of transport from that point.",
+      "importance": "Medium"
+    }
+  ],
+  "clause_risk_mapping": [
+    {
+      "clause": "1.3 Renewal",
+      "risk_level": "high",
+      "page": 1,
+      "description": "Automatic renewal for 10-year terms with only 6 months' notice for termination, posing a risk of unintended long-term commitment."
+    },
+    {
+      "clause": "Recitals a, 13.1 Appointment and Grant of License",
+      "risk_level": "high",
+      "page": 1,
+      "description": "Manufacturer appoints Customer as sole and exclusive agent globally, significantly restricting Manufacturer's market access and creating high reliance on Customer's performance."
+    },
+    {
+      "clause": "Schedule C – THE TERRITORIES",
+      "risk_level": "high",
+      "page": 13,
+      "description": "Global territory scope creates an immense and complex compliance burden for both parties regarding diverse local laws and regulations."
+    },
+    {
+      "clause": "5.4 Payment terms",
+      "risk_level": "high",
+      "page": 4,
+      "description": "Absence of explicit product unit pricing in the contract, leaving a critical financial term open to future negotiation and potential disputes."
+    },
+    {
+      "clause": "3.5 Intellectual Property, 11 Intellectual Property, 12 Transfer of Intellectual Property, 14.10 HOW TO ACHIEVE SUPER HEALTH BEYOND 2000 – ADVANCED EDITION BOOK",
+      "risk_level": "high",
+      "page": 2,
+      "description": "Complex IP landscape with ownership, first right of refusal, and copyright transfer for a book, increasing potential for disputes over rights and valuation."
+    },
+    {
+      "clause": "4.3 Market Penetration",
+      "risk_level": "medium",
+      "page": 3,
+      "description": "Customer's 'best endeavours' covenant is subjective and difficult to enforce, potentially leading to underperformance without clear breach."
+    },
+    {
+      "clause": "14.8 New Products Designed, Formulated and Supplied by the Manufacturer",
+      "risk_level": "medium",
+      "page": 8,
+      "description": "Manufacturer's ongoing obligation to provide 4 new products annually is a significant R&D commitment and potential resource drain."
+    },
+    {
+      "clause": "7.3 Rights to termination (e), (f)",
+      "risk_level": "high",
+      "page": 6,
+      "description": "Broad and subjective termination rights based on change of control or 'unsuitable' new owners, creating significant uncertainty for both parties."
+    },
+    {
+      "clause": "5.4 Payment terms",
+      "risk_level": "medium",
+      "page": 4,
+      "description": "Lack of explicit late payment penalties, potentially leading to cash flow issues for the Manufacturer and reduced incentive for timely payment."
+    },
+    {
+      "clause": "2.1 Provision by the Manufacturer, 5.1 Shipping",
+      "risk_level": "medium",
+      "page": 2,
+      "description": "Customer bears significant financial responsibility for documentation fees, freight, insurance, and shipping expenses, impacting their operational costs."
+    },
+    {
+      "clause": "5.3 Rejection of defective products",
+      "risk_level": "medium",
+      "page": 4,
+      "description": "Tight 7-day deadline for customer to inspect and reject defective products, requiring robust internal processes to avoid deemed acceptance."
+    }
+  ]
+}
+```

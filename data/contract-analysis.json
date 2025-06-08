@@ -1,0 +1,389 @@
+{
+  "contractInfo": {
+    "title": "ODM Supply Agreement",
+    "parties": [
+      {
+        "id": "manufacturer",
+        "name": "Organic Preparations INC.",
+        "location": "Port Vila, Vanuatu",
+        "role": "Manufacturer",
+        "type": "supplier",
+        "description": "Provider of health and wellness products"
+      },
+      {
+        "id": "customer",
+        "name": "Agape ATP International Holding Limited",
+        "location": "Kowloon, Hong Kong",
+        "role": "Customer/Distributor",
+        "type": "buyer",
+        "description": "Exclusive global distributor"
+      },
+      {
+        "id": "medical_team",
+        "name": "Medical Team",
+        "location": "Various",
+        "role": "Consultants",
+        "type": "consultant",
+        "description": "Provides intellectual property and consultation"
+      }
+    ],
+    "contractTerm": {
+      "initialTerm": "10 years",
+      "renewalType": "automatic",
+      "renewalPeriod": "10 years",
+      "noticePeriod": "6 months"
+    },
+    "territory": "Global - All countries",
+    "exclusivity": true
+  },
+  "relationships": [
+    {
+      "from": "manufacturer",
+      "to": "customer",
+      "type": "exclusive_agency",
+      "description": "Sole and exclusive agent for promotion, sales, marketing, distribution",
+      "strength": "strong"
+    },
+    {
+      "from": "manufacturer",
+      "to": "medical_team",
+      "type": "intellectual_property",
+      "description": "Medical team provides IP to manufacturer",
+      "strength": "medium"
+    },
+    {
+      "from": "customer",
+      "to": "medical_team",
+      "type": "indirect",
+      "description": "Indirect relationship through manufacturer",
+      "strength": "weak"
+    }
+  ],
+  "timeline": [
+    {
+      "id": 1,
+      "date": "2024-01-01",
+      "event": "Contract Signing",
+      "type": "milestone",
+      "description": "Initial 10-year term begins",
+      "completed": true,
+      "priority": "high"
+    },
+    {
+      "id": 2,
+      "date": "2024-03-31",
+      "event": "First Quarter New Product",
+      "type": "obligation",
+      "description": "Manufacturer must provide first new product",
+      "completed": false,
+      "priority": "medium"
+    },
+    {
+      "id": 3,
+      "date": "2024-06-30",
+      "event": "Second Quarter New Product",
+      "type": "obligation",
+      "description": "Manufacturer must provide second new product",
+      "completed": false,
+      "priority": "medium"
+    },
+    {
+      "id": 4,
+      "date": "2024-09-30",
+      "event": "Third Quarter New Product",
+      "type": "obligation",
+      "description": "Manufacturer must provide third new product",
+      "completed": false,
+      "priority": "medium"
+    },
+    {
+      "id": 5,
+      "date": "2024-12-31",
+      "event": "Annual Minimum Purchase Review",
+      "type": "deadline",
+      "description": "Customer must meet minimum annual purchase requirements",
+      "completed": false,
+      "priority": "high"
+    },
+    {
+      "id": 6,
+      "date": "2033-07-01",
+      "event": "Termination Notice Deadline",
+      "type": "critical",
+      "description": "Last date to provide 6-month termination notice",
+      "completed": false,
+      "priority": "critical"
+    },
+    {
+      "id": 7,
+      "date": "2034-01-01",
+      "event": "Contract Renewal/Expiry",
+      "type": "milestone",
+      "description": "Automatic renewal or contract expiry",
+      "completed": false,
+      "priority": "critical"
+    }
+  ],
+  "risks": [
+    {
+      "id": 1,
+      "category": "High",
+      "title": "Automatic Renewal Clause",
+      "description": "Could create long-term obligations if not actively managed",
+      "impact": "High",
+      "likelihood": "Medium",
+      "riskScore": 85,
+      "mitigation": "Set calendar reminders 8 months before renewal date",
+      "clauses": ["1.3"],
+      "recommendations": [
+        "Implement automated reminder system",
+        "Review renewal terms annually",
+        "Consider renegotiation options"
+      ]
+    },
+    {
+      "id": 2,
+      "category": "High",
+      "title": "Broad Intellectual Property Definition",
+      "description": "Medical Team IP definition is unusual and potentially problematic",
+      "impact": "High",
+      "likelihood": "High",
+      "riskScore": 90,
+      "mitigation": "Clarify IP rights and limitations in an addendum",
+      "clauses": ["3.5(b)"],
+      "recommendations": ["Draft IP clarification addendum", "Seek legal counsel review", "Define scope limitations"]
+    },
+    {
+      "id": 3,
+      "category": "Medium",
+      "title": "Minimum Purchase Requirements",
+      "description": "Financial risk if market demand does not materialize",
+      "impact": "Medium",
+      "likelihood": "Medium",
+      "riskScore": 60,
+      "mitigation": "Develop comprehensive marketing plan to ensure demand",
+      "clauses": ["13.1", "Schedule B"],
+      "recommendations": [
+        "Create detailed marketing strategy",
+        "Establish demand forecasting",
+        "Consider volume flexibility clauses"
+      ]
+    },
+    {
+      "id": 4,
+      "category": "Medium",
+      "title": "Compliance with Laws",
+      "description": "Both parties bear risk of maintaining compliance with local laws",
+      "impact": "Medium",
+      "likelihood": "Low",
+      "riskScore": 45,
+      "mitigation": "Regular compliance audits in all territories",
+      "clauses": ["3.1", "4.1"],
+      "recommendations": [
+        "Establish compliance monitoring system",
+        "Regular legal updates",
+        "Territory-specific compliance checks"
+      ]
+    },
+    {
+      "id": 5,
+      "category": "Low",
+      "title": "Ex Works Shipping Terms",
+      "description": "Customer bears significant shipping responsibility and risk",
+      "impact": "Low",
+      "likelihood": "Medium",
+      "riskScore": 35,
+      "mitigation": "Establish reliable shipping partners in advance",
+      "clauses": ["5.1"],
+      "recommendations": ["Pre-qualify shipping partners", "Negotiate volume discounts", "Consider insurance options"]
+    },
+    {
+      "id": 6,
+      "category": "Low",
+      "title": "Arbitration Location",
+      "description": "Arbitration in Switzerland may be costly and inconvenient",
+      "impact": "Low",
+      "likelihood": "Low",
+      "riskScore": 25,
+      "mitigation": "Budget for potential arbitration costs",
+      "clauses": ["8"],
+      "recommendations": [
+        "Set aside arbitration reserve fund",
+        "Consider alternative dispute resolution",
+        "Review arbitration procedures"
+      ]
+    }
+  ],
+  "keyTerms": [
+    {
+      "id": 1,
+      "term": "Exclusive Agency Rights",
+      "definition": "Customer appointed as sole and exclusive agent globally",
+      "importance": "Critical",
+      "clauses": ["13.1"],
+      "category": "commercial"
+    },
+    {
+      "id": 2,
+      "term": "Minimum Annual Purchases",
+      "definition": "Customer must meet specified minimum purchase quantities",
+      "importance": "High",
+      "clauses": ["13.1", "Schedule B"],
+      "category": "financial"
+    },
+    {
+      "id": 3,
+      "term": "New Product Development",
+      "definition": "Manufacturer must provide 4 new products per year",
+      "importance": "High",
+      "clauses": ["14.8"],
+      "category": "operational"
+    },
+    {
+      "id": 4,
+      "term": "Ex Works Delivery",
+      "definition": "Customer responsible for freight, insurance, and shipping",
+      "importance": "Medium",
+      "clauses": ["5.1"],
+      "category": "operational"
+    },
+    {
+      "id": 5,
+      "term": "Payment Terms",
+      "definition": "50% on order placement, 50% before shipment",
+      "importance": "Medium",
+      "clauses": ["5.4"],
+      "category": "financial"
+    },
+    {
+      "id": 6,
+      "term": "Force Majeure",
+      "definition": "Excuses performance for events beyond reasonable control",
+      "importance": "Medium",
+      "clauses": ["14.7"],
+      "category": "legal"
+    },
+    {
+      "id": 7,
+      "term": "Product Liability Insurance",
+      "definition": "Both parties must maintain product liability insurance",
+      "importance": "Medium",
+      "clauses": ["6.1", "6.2"],
+      "category": "legal"
+    },
+    {
+      "id": 8,
+      "term": "Non-Competing Products",
+      "definition": "Customer may sell non-competing products outside agreement",
+      "importance": "Low",
+      "clauses": ["14.9"],
+      "category": "commercial"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "ATP 3 Ionized Cal-Mag",
+      "quantity": 20000,
+      "unit": "114gm packaged",
+      "category": "supplements"
+    },
+    {
+      "id": 2,
+      "name": "ATP 4 Omega Blend",
+      "quantity": 15000,
+      "unit": "250mL packaged",
+      "category": "supplements"
+    },
+    {
+      "id": 3,
+      "name": "ATP 5 BetaMaxx",
+      "quantity": 15000,
+      "unit": "150gm packaged",
+      "category": "supplements"
+    },
+    {
+      "id": 4,
+      "name": "AGP 1 Iron",
+      "quantity": 1000,
+      "unit": "29.5mL packaged",
+      "category": "supplements"
+    },
+    {
+      "id": 5,
+      "name": "YFA Young Formula",
+      "quantity": 3000,
+      "unit": "450gm packaged",
+      "category": "wellness"
+    },
+    {
+      "id": 6,
+      "name": "ORYC Organic Soap",
+      "quantity": 2500,
+      "unit": "150gm packaged",
+      "category": "personal_care"
+    }
+  ],
+  "clauseRiskMap": [
+    {
+      "clause": "1.3",
+      "riskLevel": "high",
+      "description": "Automatic renewal for 10-year terms",
+      "riskScore": 85
+    },
+    {
+      "clause": "3.5(b)",
+      "riskLevel": "high",
+      "description": "Unusual IP definition for Medical Team",
+      "riskScore": 90
+    },
+    {
+      "clause": "13.1",
+      "riskLevel": "medium",
+      "description": "Minimum purchase requirements",
+      "riskScore": 60
+    },
+    {
+      "clause": "Schedule B",
+      "riskLevel": "medium",
+      "description": "Specific purchase quantities required",
+      "riskScore": 60
+    },
+    {
+      "clause": "3.1",
+      "riskLevel": "medium",
+      "description": "Compliance with local laws",
+      "riskScore": 45
+    },
+    {
+      "clause": "4.1",
+      "riskLevel": "medium",
+      "description": "Compliance with local laws",
+      "riskScore": 45
+    },
+    {
+      "clause": "5.1",
+      "riskLevel": "low",
+      "description": "Ex Works shipping terms",
+      "riskScore": 35
+    },
+    {
+      "clause": "8",
+      "riskLevel": "low",
+      "description": "Arbitration in Switzerland",
+      "riskScore": 25
+    }
+  ],
+  "analytics": {
+    "overallRiskScore": 65,
+    "riskDistribution": {
+      "high": 2,
+      "medium": 2,
+      "low": 2
+    },
+    "completionRate": 14,
+    "criticalDeadlines": 2,
+    "totalClauses": 15,
+    "riskyClauses": 8
+  }
+}

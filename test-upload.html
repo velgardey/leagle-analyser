@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test PDF Upload</title>
+</head>
+<body>
+    <h1>Test PDF Upload to /api/analyze-pdf</h1>
+    <form id="uploadForm">
+        <input type="file" id="fileInput" accept=".pdf" required>
+        <button type="submit">Upload and Analyze</button>
+    </form>
+    
+    <div id="result"></div>
+    
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                alert('Please select a PDF file');
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('file', file);
+            
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Uploading and analyzing...';
+            
+            try {
+                const response = await fetch('/api/analyze-pdf', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `
+                        <h2>Analysis Complete!</h2>
+                        <h3>Summary:</h3>
+                        <pre>${result.summary}</pre>
+                        <h3>Structured Data:</h3>
+                        <pre>${JSON.stringify(result.data, null, 2)}</pre>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `<h2>Error:</h2><p>${result.error}</p>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<h2>Error:</h2><p>${error.message}</p>`;
+            }
+        });
+    </script>
+</body>
+</html>

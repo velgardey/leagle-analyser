@@ -1,0 +1,6 @@
+{
+  "error": true,
+  "message": "Contract analysis failed quality validation",
+  "details": "Invalid format specifier ' \"Specific clause or section name (e.g., 'Section 3.1 Payment Terms', 'Automatic Renewal Clause')\",\n      \"risk_level\": \"high/medium/low based on risk assessment\",\n      \"page\": \"Page number where clause is located (1-based)\",\n      \"description\": \"Brief description of the risk associated with this clause\"\n    ' for object of type 'str'",
+  "timestamp": "2025-06-09T04:38:24.726833"
+}

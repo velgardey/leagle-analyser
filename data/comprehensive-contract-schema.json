@@ -1,0 +1,405 @@
+{
+  "contractInfo": {
+    "title": "ODM Supply Agreement",
+    "type": "Supply Agreement",
+    "effectiveDate": "2018-01-15",
+    "expirationDate": "2028-01-15",
+    "totalValue": 5000000,
+    "currency": "USD",
+    "governingLaw": "English Law",
+    "parties": [
+      {
+        "id": "manufacturer",
+        "name": "Organic Preparations Inc.",
+        "legalName": "Organic Preparations Incorporated",
+        "location": "2nd Floor, Transpacific House, Lini Highway, Port Vila, Vanuatu",
+        "address": {
+          "street": "2nd Floor, Transpacific House, Lini Highway",
+          "city": "Port Vila",
+          "country": "Vanuatu",
+          "postalCode": ""
+        },
+        "role": "Manufacturer",
+        "type": "Company",
+        "entityType": "Corporation",
+        "description": "Produces and supplies products according to the agreement.",
+        "contactInfo": {
+          "email": "contact@organicprep.com",
+          "phone": "+678-123-4567"
+        }
+      },
+      {
+        "id": "customer",
+        "name": "Agape ATP International Holding Limited",
+        "legalName": "Agape ATP International Holding Limited",
+        "location": "Unit 06, 7F, Energy Plaza, 92 Granville Road, Tsim Sha Tsui East, Kowloon, Hong Kong",
+        "address": {
+          "street": "Unit 06, 7F, Energy Plaza, 92 Granville Road",
+          "city": "Tsim Sha Tsui East, Kowloon",
+          "country": "Hong Kong",
+          "postalCode": ""
+        },
+        "role": "Customer",
+        "type": "Company",
+        "entityType": "Limited Company",
+        "description": "Promotes, sells, and distributes the products manufactured by Organic Preparations Inc.",
+        "contactInfo": {
+          "email": "info@agapeatp.com",
+          "phone": "+852-1234-5678"
+        }
+      }
+    ],
+    "contractTerm": {
+      "initialTerm": "10 years",
+      "renewalType": "Automatic",
+      "renewalPeriod": "10 years",
+      "noticePeriod": "6 months",
+      "autoRenewal": true
+    },
+    "territory": "Global - All countries",
+    "exclusivity": true,
+    "financialTerms": {
+      "paymentTerms": "Net 30 days",
+      "currency": "USD",
+      "totalValue": 5000000,
+      "paymentSchedule": "Monthly",
+      "penalties": {
+        "latePayment": "2% per month",
+        "breach": "Up to $100,000"
+      }
+    }
+  },
+  "relationships": [
+    {
+      "from": "manufacturer",
+      "to": "customer",
+      "type": "exclusive_agency",
+      "description": "Sole and exclusive agent for promotion, sales, marketing, distribution",
+      "strength": "strong",
+      "obligations": [
+        "Exclusive distribution rights",
+        "Marketing and promotion",
+        "Sales target achievement"
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "id": 1,
+      "date": "2018-01-15",
+      "event": "Agreement Start Date",
+      "type": "milestone",
+      "description": "The date the agreement came into effect.",
+      "completed": true,
+      "priority": "high",
+      "responsibleParty": "Both parties",
+      "consequences": "Contract becomes legally binding",
+      "noticeRequired": false
+    },
+    {
+      "id": 2,
+      "date": "2028-01-15",
+      "event": "Initial Term Expiry",
+      "type": "deadline",
+      "description": "The date the initial 10-year term ends.",
+      "completed": false,
+      "priority": "critical",
+      "responsibleParty": "Both parties",
+      "consequences": "Automatic renewal unless notice given",
+      "noticeRequired": true,
+      "noticeDeadline": "2027-07-15"
+    },
+    {
+      "id": 3,
+      "date": "2024-03-31",
+      "event": "Quarterly Product Review",
+      "type": "obligation",
+      "description": "Review of new product development and market performance",
+      "completed": false,
+      "priority": "medium",
+      "responsibleParty": "Manufacturer",
+      "consequences": "Product line adjustments may be required",
+      "noticeRequired": false
+    },
+    {
+      "id": 4,
+      "date": "2024-12-31",
+      "event": "Annual Performance Review",
+      "type": "milestone",
+      "description": "Comprehensive review of contract performance and compliance",
+      "completed": false,
+      "priority": "high",
+      "responsibleParty": "Both parties",
+      "consequences": "Performance adjustments and planning for next year",
+      "noticeRequired": true,
+      "noticeDeadline": "2024-11-30"
+    }
+  ],
+  "risks": [
+    {
+      "id": 1,
+      "category": "High",
+      "title": "Automatic Renewal Clause",
+      "description": "The contract automatically renews for another 10-year term unless either party provides 6 months written notice. This could create unintended long-term obligations.",
+      "impact": "High",
+      "likelihood": "Medium",
+      "riskScore": 85,
+      "urgency": "High",
+      "mitigation": "Set calendar reminders 8 months before renewal date to allow time for decision-making and notice provision if needed.",
+      "clauses": ["1.3", "Termination"],
+      "recommendations": [
+        "Implement automated reminder system 8 months before renewal",
+        "Review contract performance annually",
+        "Consider renegotiation options 12 months before renewal",
+        "Document decision-making process for renewal"
+      ],
+      "mitigationStrategies": [
+        "Calendar management system",
+        "Legal review process",
+        "Performance evaluation framework"
+      ]
+    },
+    {
+      "id": 2,
+      "category": "High",
+      "title": "Broad Territorial Scope",
+      "description": "Global exclusive rights may limit flexibility and create compliance challenges across different jurisdictions with varying regulations.",
+      "impact": "High",
+      "likelihood": "High",
+      "riskScore": 90,
+      "urgency": "Medium",
+      "mitigation": "Conduct regular compliance reviews for each major market and maintain updated legal counsel in key jurisdictions.",
+      "clauses": ["2.1", "Territory"],
+      "recommendations": [
+        "Establish compliance monitoring system",
+        "Engage local legal counsel in major markets",
+        "Regular regulatory update reviews",
+        "Consider territorial limitations in future agreements"
+      ],
+      "mitigationStrategies": [
+        "Legal compliance framework",
+        "Regular market analysis",
+        "Local partnership strategies"
+      ]
+    }
+  ],
+  "keyTerms": [
+    {
+      "id": 1,
+      "term": "Exclusive Agency",
+      "definition": "Agape ATP has the sole and exclusive right to promote, sell, market, and distribute the products globally.",
+      "importance": "Critical",
+      "clauses": ["2.1", "2.2"],
+      "category": "Commercial Rights",
+      "implications": [
+        "No other distributors can be appointed",
+        "Manufacturer cannot sell directly in covered territories",
+        "Customer has protected market position"
+      ]
+    },
+    {
+      "id": 2,
+      "term": "Automatic Renewal",
+      "definition": "The contract automatically extends for successive 10-year periods unless terminated with 6 months notice.",
+      "importance": "High",
+      "clauses": ["1.3"],
+      "category": "Term and Termination",
+      "implications": [
+        "Long-term commitment without active decision",
+        "Requires proactive action to terminate",
+        "Creates planning certainty but reduces flexibility"
+      ]
+    },
+    {
+      "id": 3,
+      "term": "Product Development Obligations",
+      "definition": "Manufacturer must develop and provide new products according to agreed specifications and timelines.",
+      "importance": "High",
+      "clauses": ["3.1", "3.2"],
+      "category": "Performance Obligations",
+      "implications": [
+        "Ongoing R&D investment required",
+        "Quality and timeline commitments",
+        "Potential penalties for non-compliance"
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Health Supplement Line A",
+      "description": "Premium health and wellness supplements",
+      "quantity": 10000,
+      "unit": "units",
+      "category": "Health Supplements",
+      "specifications": {
+        "packaging": "Retail ready",
+        "shelfLife": "24 months",
+        "certifications": ["FDA", "GMP"]
+      },
+      "pricing": {
+        "unitPrice": 25.00,
+        "currency": "USD",
+        "minimumOrder": 1000
+      }
+    },
+    {
+      "id": 2,
+      "name": "Wellness Product Line B",
+      "description": "Specialized wellness products for targeted health benefits",
+      "quantity": 5000,
+      "unit": "units",
+      "category": "Wellness Products",
+      "specifications": {
+        "packaging": "Premium packaging",
+        "shelfLife": "18 months",
+        "certifications": ["Organic", "Non-GMO"]
+      },
+      "pricing": {
+        "unitPrice": 45.00,
+        "currency": "USD",
+        "minimumOrder": 500
+      }
+    }
+  ],
+  "clauseRiskMap": [
+    {
+      "clause": "1.3",
+      "riskLevel": "high",
+      "description": "Automatic renewal clause creates long-term commitment risk",
+      "riskScore": 85,
+      "pageNumber": 2,
+      "position": {
+        "top": 150,
+        "left": 50,
+        "width": 500,
+        "height": 30
+      },
+      "category": "Term Risk",
+      "mitigation": "Calendar reminder system"
+    },
+    {
+      "clause": "2.1",
+      "riskLevel": "high",
+      "description": "Global exclusive territory creates compliance and flexibility risks",
+      "riskScore": 90,
+      "pageNumber": 3,
+      "position": {
+        "top": 200,
+        "left": 50,
+        "width": 500,
+        "height": 40
+      },
+      "category": "Territorial Risk",
+      "mitigation": "Regular compliance reviews"
+    },
+    {
+      "clause": "3.1",
+      "riskLevel": "medium",
+      "description": "Product development obligations may strain resources",
+      "riskScore": 65,
+      "pageNumber": 4,
+      "position": {
+        "top": 100,
+        "left": 50,
+        "width": 500,
+        "height": 35
+      },
+      "category": "Performance Risk",
+      "mitigation": "Resource planning and milestone tracking"
+    }
+  ],
+  "analytics": {
+    "overallRiskScore": 75,
+    "riskDistribution": {
+      "high": 2,
+      "medium": 1,
+      "low": 0
+    },
+    "completionRate": 25,
+    "criticalDeadlines": 1,
+    "totalClauses": 15,
+    "riskyClauses": 8,
+    "performanceMetrics": {
+      "complianceScore": 85,
+      "financialHealth": 90,
+      "operationalRisk": 60
+    }
+  },
+  "documentStructure": {
+    "sections": [
+      {
+        "title": "Definitions and Interpretation",
+        "pageStart": 1,
+        "pageEnd": 2,
+        "clauses": ["1.1", "1.2", "1.3"],
+        "riskLevel": "medium",
+        "summary": "Establishes key definitions and contract interpretation rules including automatic renewal terms."
+      },
+      {
+        "title": "Appointment and Territory",
+        "pageStart": 3,
+        "pageEnd": 4,
+        "clauses": ["2.1", "2.2", "2.3"],
+        "riskLevel": "high",
+        "summary": "Grants exclusive global distribution rights with significant territorial scope."
+      },
+      {
+        "title": "Product Development and Supply",
+        "pageStart": 5,
+        "pageEnd": 7,
+        "clauses": ["3.1", "3.2", "3.3", "3.4"],
+        "riskLevel": "medium",
+        "summary": "Outlines product development obligations and supply chain requirements."
+      },
+      {
+        "title": "Financial Terms and Payment",
+        "pageStart": 8,
+        "pageEnd": 9,
+        "clauses": ["4.1", "4.2", "4.3"],
+        "riskLevel": "low",
+        "summary": "Standard payment terms and financial obligations with clear structure."
+      },
+      {
+        "title": "Termination and Dispute Resolution",
+        "pageStart": 10,
+        "pageEnd": 12,
+        "clauses": ["5.1", "5.2", "6.1", "6.2"],
+        "riskLevel": "medium",
+        "summary": "Termination procedures and dispute resolution mechanisms including arbitration."
+      }
+    ],
+    "totalPages": 12
+  },
+  "complianceRequirements": [
+    {
+      "id": 1,
+      "requirement": "FDA Compliance",
+      "description": "All health products must comply with FDA regulations",
+      "jurisdiction": "United States",
+      "deadline": "Ongoing",
+      "status": "Active",
+      "responsibleParty": "Manufacturer"
+    },
+    {
+      "id": 2,
+      "requirement": "EU Health Claims Regulation",
+      "description": "Products sold in EU must comply with health claims regulations",
+      "jurisdiction": "European Union",
+      "deadline": "Ongoing",
+      "status": "Active",
+      "responsibleParty": "Customer"
+    }
+  ],
+  "metadata": {
+    "analysisDate": "2024-01-15T10:30:00Z",
+    "analysisVersion": "2.0",
+    "confidence": 0.92,
+    "extractedText": "Full contract text would be stored here...",
+    "fileName": "ODM_Supply_Agreement_2018.pdf",
+    "fileSize": 2048576,
+    "totalPages": 12,
+    "language": "English",
+    "jurisdiction": "English Law"
+  }
+}
