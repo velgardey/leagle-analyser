@@ -35,10 +35,10 @@ export default function PartyRelationshipDiagram({ data }: PartyRelationshipDiag
     const g = document.createElementNS("http://www.w3.org/2000/svg", "g")
     svg.appendChild(g)
 
-    // Calculate positions for parties in a circle layout
+    // Calculate positions for parties in a circle layout with better spacing
     const centerX = width / 2
     const centerY = height / 2
-    const radius = Math.min(width, height) * 0.3
+    const radius = Math.min(width, height) * 0.35 // Increased radius for better spacing
 
     const positions: Record<string, { x: number; y: number }> = {}
 
@@ -215,9 +215,9 @@ export default function PartyRelationshipDiagram({ data }: PartyRelationshipDiag
 
       // Shadow
       const shadow = document.createElementNS("http://www.w3.org/2000/svg", "circle")
-      shadow.setAttribute("cx", (pos.x + 3).toString())
-      shadow.setAttribute("cy", (pos.y + 3).toString())
-      shadow.setAttribute("r", "70")
+      shadow.setAttribute("cx", (pos.x + 4).toString())
+      shadow.setAttribute("cy", (pos.y + 4).toString())
+      shadow.setAttribute("r", "90") // Increased radius
       shadow.setAttribute("fill", "rgba(0,0,0,0.2)")
       shadow.setAttribute("opacity", selectedParty ? (party.id === selectedParty ? "1" : "0.3") : "1")
       g.appendChild(shadow)
@@ -226,10 +226,10 @@ export default function PartyRelationshipDiagram({ data }: PartyRelationshipDiag
       const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle")
       circle.setAttribute("cx", pos.x.toString())
       circle.setAttribute("cy", pos.y.toString())
-      circle.setAttribute("r", "70")
+      circle.setAttribute("r", "90") // Increased radius for better text fit
       circle.setAttribute("fill", getFill(party.type))
       circle.setAttribute("stroke", "#ffffff")
-      circle.setAttribute("stroke-width", "3")
+      circle.setAttribute("stroke-width", "4") // Slightly thicker border
       circle.style.cursor = "pointer"
       circle.setAttribute("opacity", selectedParty ? (party.id === selectedParty ? "1" : "0.3") : "1")
 
@@ -244,21 +244,21 @@ export default function PartyRelationshipDiagram({ data }: PartyRelationshipDiag
       })
 
       circle.addEventListener("mouseenter", () => {
-        circle.setAttribute("stroke-width", "5")
+        circle.setAttribute("stroke-width", "6")
         circle.setAttribute("stroke", "#f3f4f6")
       })
 
       circle.addEventListener("mouseleave", () => {
-        circle.setAttribute("stroke-width", "3")
+        circle.setAttribute("stroke-width", "4")
         circle.setAttribute("stroke", "#ffffff")
       })
 
       g.appendChild(circle)
 
-      // Party icon
-      const iconSize = 30
+      // Party icon (larger for better visibility)
+      const iconSize = 36
       const iconX = pos.x - iconSize / 2
-      const iconY = pos.y - 35
+      const iconY = pos.y - 45
 
       const icon = document.createElementNS("http://www.w3.org/2000/svg", "g")
 
@@ -294,38 +294,64 @@ export default function PartyRelationshipDiagram({ data }: PartyRelationshipDiag
       icon.setAttribute("opacity", selectedParty ? (party.id === selectedParty ? "1" : "0.3") : "1")
       g.appendChild(icon)
 
-      // Party name
-      const name = document.createElementNS("http://www.w3.org/2000/svg", "text")
-      name.setAttribute("x", pos.x.toString())
-      name.setAttribute("y", (pos.y - 5).toString())
-      name.setAttribute("text-anchor", "middle")
-      name.setAttribute("fill", "white")
-      name.setAttribute("font-size", "14")
-      name.setAttribute("font-weight", "bold")
-      const displayName = party.name.length > 20 ? party.name.substring(0, 17) + "..." : party.name
-      name.textContent = displayName
-      name.setAttribute("opacity", selectedParty ? (party.id === selectedParty ? "1" : "0.3") : "1")
-      g.appendChild(name)
+      // Party name (with better text wrapping)
+      const nameText = party.name.length > 16 ? party.name.substring(0, 14) + "..." : party.name
+
+      // Split long names into multiple lines if needed
+      const nameLines = []
+      if (nameText.length > 12) {
+        const words = nameText.split(' ')
+        let currentLine = ''
+        for (const word of words) {
+          if ((currentLine + word).length > 12 && currentLine.length > 0) {
+            nameLines.push(currentLine.trim())
+            currentLine = word + ' '
+          } else {
+            currentLine += word + ' '
+          }
+        }
+        if (currentLine.trim()) {
+          nameLines.push(currentLine.trim())
+        }
+      } else {
+        nameLines.push(nameText)
+      }
+
+      // Render name lines
+      nameLines.forEach((line, index) => {
+        const name = document.createElementNS("http://www.w3.org/2000/svg", "text")
+        name.setAttribute("x", pos.x.toString())
+        name.setAttribute("y", (pos.y - 10 + (index * 16)).toString())
+        name.setAttribute("text-anchor", "middle")
+        name.setAttribute("fill", "white")
+        name.setAttribute("font-size", "13")
+        name.setAttribute("font-weight", "bold")
+        name.textContent = line
+        name.setAttribute("opacity", selectedParty ? (party.id === selectedParty ? "1" : "0.3") : "1")
+        g.appendChild(name)
+      })
 
       // Party role
       const role = document.createElementNS("http://www.w3.org/2000/svg", "text")
       role.setAttribute("x", pos.x.toString())
-      role.setAttribute("y", (pos.y + 15).toString())
+      role.setAttribute("y", (pos.y + 20 + (nameLines.length - 1) * 16).toString())
       role.setAttribute("text-anchor", "middle")
       role.setAttribute("fill", "white")
-      role.setAttribute("font-size", "12")
-      role.textContent = party.role
+      role.setAttribute("font-size", "11")
+      role.setAttribute("font-weight", "normal")
+      const displayRole = party.role.length > 18 ? party.role.substring(0, 15) + "..." : party.role
+      role.textContent = displayRole
       role.setAttribute("opacity", selectedParty ? (party.id === selectedParty ? "1" : "0.3") : "1")
       g.appendChild(role)
 
-      // Location
+      // Location (positioned below the larger circle)
       const location = document.createElementNS("http://www.w3.org/2000/svg", "text")
       location.setAttribute("x", pos.x.toString())
-      location.setAttribute("y", (pos.y + 95).toString())
+      location.setAttribute("y", (pos.y + 110).toString()) // Adjusted for larger circle
       location.setAttribute("text-anchor", "middle")
       location.setAttribute("fill", "#6b7280")
-      location.setAttribute("font-size", "12")
-      const displayLocation = party.location.length > 25 ? party.location.substring(0, 22) + "..." : party.location
+      location.setAttribute("font-size", "11")
+      const displayLocation = party.location.length > 20 ? party.location.substring(0, 17) + "..." : party.location
       location.textContent = displayLocation
       location.setAttribute("opacity", selectedParty ? (party.id === selectedParty ? "1" : "0.3") : "1")
       g.appendChild(location)

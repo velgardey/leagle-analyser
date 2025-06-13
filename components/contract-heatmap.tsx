@@ -10,6 +10,7 @@ import { Flame, Download } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useToast } from "@/components/ui/use-toast"
 import PDFViewer from "./pdf-viewer"
+import PDFChatbot from "./pdf-chatbot"
 import type { ContractData } from "@/lib/contract-service"
 
 interface ContractHeatmapProps {
@@ -188,9 +189,14 @@ export default function ContractHeatmap({ data }: ContractHeatmapProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
+            className="relative"
           >
             {data.pdfBlob ? (
-              <PDFViewer data={data} highlightRisks={true} selectedClause={selectedClause} />
+              <>
+                <PDFViewer data={data} highlightRisks={true} selectedClause={selectedClause} />
+                {/* Integrated Chatbot */}
+                <PDFChatbot data={data} />
+              </>
             ) : (
               <Card>
                 <CardContent className="p-6">

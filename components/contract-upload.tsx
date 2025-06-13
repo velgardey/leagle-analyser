@@ -29,9 +29,11 @@ import { analyzeContract, type ContractData } from "@/lib/contract-service"
 
 interface ContractUploadProps {
   onContractAnalyzed: (data: ContractData) => void
+  onAnalysisStart?: () => void
+  onAnalysisError?: (error: string) => void
 }
 
-export default function ContractUpload({ onContractAnalyzed }: ContractUploadProps) {
+export default function ContractUpload({ onContractAnalyzed, onAnalysisStart, onAnalysisError }: ContractUploadProps) {
   const [isAnalyzing, setIsAnalyzing] = useState(false)
   const [dragActive, setDragActive] = useState(false)
   const [uploadProgress, setUploadProgress] = useState(0)
@@ -46,31 +48,61 @@ export default function ContractUpload({ onContractAnalyzed }: ContractUploadPro
       title: "Processing PDF",
       description: "Extracting text and metadata from PDF document",
       icon: <FileText className="w-5 h-5" />,
+      duration: 8000, // 8 seconds
     },
     {
-      title: "Gemini AI Analysis",
-      description: "Analyzing contract structure and content with AI",
+      title: "Document Structure Analysis",
+      description: "Analyzing document layout and structure",
       icon: <Brain className="w-5 h-5" />,
+      duration: 6000, // 6 seconds
     },
     {
-      title: "Identifying Parties",
-      description: "Detecting entities and relationships",
+      title: "Gemini AI Deep Analysis",
+      description: "Comprehensive AI analysis of contract content",
+      icon: <Sparkles className="w-5 h-5" />,
+      duration: 12000, // 12 seconds
+    },
+    {
+      title: "Identifying Parties & Entities",
+      description: "Detecting all parties, entities and relationships",
       icon: <Network className="w-5 h-5" />,
+      duration: 7000, // 7 seconds
     },
     {
-      title: "Risk Assessment",
-      description: "Evaluating potential legal and business risks",
+      title: "Risk Assessment & Scoring",
+      description: "Evaluating legal, financial and business risks",
       icon: <AlertTriangle className="w-5 h-5" />,
+      duration: 10000, // 10 seconds
     },
     {
-      title: "Mapping Clauses",
+      title: "Timeline & Obligations Extraction",
+      description: "Identifying dates, deadlines and obligations",
+      icon: <TimerIcon className="w-5 h-5" />,
+      duration: 5000, // 5 seconds
+    },
+    {
+      title: "Key Terms & Definitions",
+      description: "Extracting and categorizing key contract terms",
+      icon: <TrendingUp className="w-5 h-5" />,
+      duration: 4000, // 4 seconds
+    },
+    {
+      title: "Clause Position Mapping",
       description: "Mapping clause positions for PDF highlighting",
       icon: <Flame className="w-5 h-5" />,
+      duration: 6000, // 6 seconds
     },
     {
       title: "Generating Insights",
-      description: "Creating interactive data representations",
-      icon: <Sparkles className="w-5 h-5" />,
+      description: "Creating interactive visualizations and reports",
+      icon: <Zap className="w-5 h-5" />,
+      duration: 4000, // 4 seconds
+    },
+    {
+      title: "Finalizing Analysis",
+      description: "Completing analysis and preparing results",
+      icon: <CheckCircle className="w-5 h-5" />,
+      duration: 3000, // 3 seconds
     },
   ]
 
@@ -111,33 +143,70 @@ export default function ContractUpload({ onContractAnalyzed }: ContractUploadPro
     setAnalysisStage(0)
     setError(null)
 
+    // Notify parent component that analysis has started
+    onAnalysisStart?.()
+
     try {
-      // Simulate file upload progress
+      // Simulate file upload progress (faster initial upload)
       const uploadInterval = setInterval(() => {
         setUploadProgress((prev) => {
           if (prev >= 100) {
             clearInterval(uploadInterval)
             return 100
           }
-          return prev + 10
+          return prev + 20
         })
-      }, 200)
+      }, 150)
 
       // Wait for upload to complete
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      await new Promise((resolve) => setTimeout(resolve, 1000))
       clearInterval(uploadInterval)
       setUploadProgress(100)
 
-      // Simulate analysis stages
+      // Start actual analysis in parallel with stage simulation
+      let analysisPromise: Promise<any> | null = null
+      let analysisResult: any = null
+      let analysisCompleted = false
+
+      // Start the actual analysis after a short delay
+      setTimeout(async () => {
+        try {
+          console.log("Starting contract analysis...")
+          analysisResult = await analyzeContract(file)
+          analysisCompleted = true
+          console.log("Analysis completed:", analysisResult)
+        } catch (error) {
+          console.error("Analysis failed during processing:", error)
+          // Don't throw here, let the main flow handle it
+        }
+      }, 5000) // Start analysis 5 seconds into the process
+
+      // Simulate analysis stages with realistic timing
       for (let i = 0; i < analysisStages.length; i++) {
         setAnalysisStage(i)
-        await new Promise((resolve) => setTimeout(resolve, 1500))
+        const stageDuration = analysisStages[i].duration || 3000
+
+        // If analysis completed early and we're in the last few stages, speed up
+        if (analysisCompleted && i >= analysisStages.length - 3) {
+          await new Promise((resolve) => setTimeout(resolve, 500))
+        } else {
+          await new Promise((resolve) => setTimeout(resolve, stageDuration))
+        }
       }
 
-      // Perform actual analysis
-      console.log("Starting contract analysis...")
-      const analysisResult = await analyzeContract(file)
-      console.log("Analysis completed:", analysisResult)
+      // If analysis hasn't completed yet, wait for it
+      if (!analysisCompleted) {
+        console.log("Waiting for analysis to complete...")
+        // Wait up to 10 more seconds for analysis
+        for (let i = 0; i < 20; i++) {
+          if (analysisCompleted) break
+          await new Promise((resolve) => setTimeout(resolve, 500))
+        }
+      }
+
+      if (!analysisResult) {
+        throw new Error("Analysis did not complete in expected time")
+      }
 
       setIsAnalyzing(false)
       onContractAnalyzed(analysisResult)
@@ -152,6 +221,10 @@ export default function ContractUpload({ onContractAnalyzed }: ContractUploadPro
       setIsAnalyzing(false)
       const errorMessage = error.message || "An unexpected error occurred"
       setError(errorMessage)
+
+      // Notify parent component of the error
+      onAnalysisError?.(errorMessage)
+
       toast({
         title: "Analysis Failed",
         description: errorMessage,

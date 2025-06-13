@@ -167,7 +167,23 @@ export interface ContractData {
 // Store for the current contract data
 let currentContractData: ContractData | null = null
 
+// Cache for analysis results to avoid re-processing the same file
+const analysisCache = new Map<string, { data: ContractData; timestamp: number }>()
+const CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
+
+// Performance monitoring
+interface PerformanceMetrics {
+  analysisTime: number
+  fileSize: number
+  fileName: string
+  timestamp: number
+}
+
+const performanceMetrics: PerformanceMetrics[] = []
+
 export async function analyzeContract(file: File): Promise<ContractData> {
+  const startTime = Date.now()
+
   try {
     console.log("Starting contract analysis for:", file.name)
 
@@ -175,6 +191,16 @@ export async function analyzeContract(file: File): Promise<ContractData> {
     const validation = validatePDFFile(file)
     if (!validation.isValid) {
       throw new Error(validation.error)
+    }
+
+    // Check cache first
+    const cacheKey = `${file.name}-${file.size}-${file.lastModified}`
+    const cached = analysisCache.get(cacheKey)
+
+    if (cached && (Date.now() - cached.timestamp) < CACHE_DURATION) {
+      console.log("Returning cached analysis result")
+      currentContractData = cached.data
+      return cached.data
     }
 
     // Create blob URL for PDF viewing
@@ -250,7 +276,28 @@ export async function analyzeContract(file: File): Promise<ContractData> {
 
     // Store the data
     currentContractData = contractData
-    console.log("Contract analysis completed successfully")
+
+    // Cache the result
+    analysisCache.set(cacheKey, {
+      data: contractData,
+      timestamp: Date.now()
+    })
+
+    // Record performance metrics
+    const analysisTime = Date.now() - startTime
+    performanceMetrics.push({
+      analysisTime,
+      fileSize: file.size,
+      fileName: file.name,
+      timestamp: Date.now()
+    })
+
+    // Keep only last 10 metrics
+    if (performanceMetrics.length > 10) {
+      performanceMetrics.shift()
+    }
+
+    console.log(`Contract analysis completed successfully in ${analysisTime}ms`)
 
     return contractData
   } catch (error) {
@@ -358,6 +405,22 @@ export function getContractData(): ContractData | null {
 export function clearContractData(): void {
   currentContractData = null
   console.log("Contract data cleared")
+}
+
+export function getPerformanceMetrics(): PerformanceMetrics[] {
+  return [...performanceMetrics]
+}
+
+export function clearCache(): void {
+  analysisCache.clear()
+  console.log("Analysis cache cleared")
+}
+
+export function getCacheStats(): { size: number; keys: string[] } {
+  return {
+    size: analysisCache.size,
+    keys: Array.from(analysisCache.keys())
+  }
 }
 
 // Helper functions for data processing

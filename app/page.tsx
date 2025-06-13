@@ -3,8 +3,9 @@
 import { useState } from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 import { ModeToggle } from "@/components/mode-toggle"
-import { Upload, FileText, Network, TimerIcon, AlertTriangle, TrendingUp, Flame, Download } from "lucide-react"
+import { Upload, FileText, Network, TimerIcon, AlertTriangle, TrendingUp, Flame, Download, Settings } from "lucide-react"
 import ContractUpload from "@/components/contract-upload"
 import PartyRelationshipDiagram from "@/components/party-relationship-diagram"
 import ContractTimeline from "@/components/contract-timeline"
@@ -12,6 +13,7 @@ import RiskAssessment from "@/components/risk-assessment"
 import KeyTermsExtraction from "@/components/key-terms-extraction"
 import ContractSummary from "@/components/contract-summary"
 import ContractHeatmap from "@/components/contract-heatmap"
+import AppSettings from "@/components/app-settings"
 import { Toaster } from "@/components/ui/toaster"
 import { useToast } from "@/components/ui/use-toast"
 import { motion } from "framer-motion"
@@ -20,19 +22,62 @@ import type { ContractData } from "@/lib/contract-service"
 export default function SmartContractAnalyzer() {
   const [contractData, setContractData] = useState<ContractData | null>(null)
   const [activeTab, setActiveTab] = useState("upload")
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [showSettings, setShowSettings] = useState(false)
   const { toast } = useToast()
 
   const handleContractAnalyzed = (data: ContractData) => {
-    setContractData(data)
-    setActiveTab("summary")
+    try {
+      setContractData(data)
+      setActiveTab("summary")
+      setError(null)
+      setIsLoading(false)
+
+      // Validate data quality
+      const riskCount = data.risks?.length || 0
+      const partyCount = data.contractInfo?.parties?.length || 0
+      const timelineCount = data.timeline?.length || 0
+
+      toast({
+        title: "Contract Analysis Complete",
+        description: `Successfully analyzed ${data.fileName} with ${riskCount} risks, ${partyCount} parties, and ${timelineCount} timeline events identified.`,
+        duration: 5000,
+      })
+    } catch (error) {
+      console.error("Error handling contract analysis result:", error)
+      setError("Failed to process analysis results")
+      toast({
+        title: "Processing Error",
+        description: "Analysis completed but there was an error processing the results.",
+        variant: "destructive",
+        duration: 5000,
+      })
+    }
+  }
+
+  const handleAnalysisStart = () => {
+    setIsLoading(true)
+    setError(null)
+  }
+
+  const handleAnalysisError = (errorMessage: string) => {
+    setIsLoading(false)
+    setError(errorMessage)
     toast({
-      title: "Contract Analysis Complete",
-      description: `Successfully analyzed ${data.fileName} with ${data.risks.length} risks identified.`,
+      title: "Analysis Failed",
+      description: errorMessage,
+      variant: "destructive",
       duration: 5000,
     })
   }
 
-  const handleExport = () => {
+  const retryAnalysis = () => {
+    setError(null)
+    setActiveTab("upload")
+  }
+
+  const handleExport = async () => {
     if (!contractData) return
 
     toast({
@@ -41,14 +86,46 @@ export default function SmartContractAnalyzer() {
       duration: 3000,
     })
 
-    // Simulate export delay
-    setTimeout(() => {
+    try {
+      // Generate comprehensive report
+      const reportData = {
+        contractInfo: contractData.contractInfo,
+        risks: contractData.risks,
+        timeline: contractData.timeline,
+        keyTerms: contractData.keyTerms,
+        analytics: contractData.analytics,
+        exportDate: new Date().toISOString(),
+        fileName: contractData.fileName
+      }
+
+      // Create downloadable JSON report
+      const blob = new Blob([JSON.stringify(reportData, null, 2)], {
+        type: 'application/json'
+      })
+
+      const url = URL.createObjectURL(blob)
+      const link = document.createElement('a')
+      link.href = url
+      link.download = `contract-analysis-${contractData.fileName?.replace('.pdf', '') || 'report'}-${new Date().toISOString().split('T')[0]}.json`
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      URL.revokeObjectURL(url)
+
       toast({
         title: "Export Complete",
-        description: "Your analysis report has been downloaded.",
+        description: "Your analysis report has been downloaded as JSON.",
         duration: 3000,
       })
-    }, 2000)
+    } catch (error) {
+      console.error("Export failed:", error)
+      toast({
+        title: "Export Failed",
+        description: "Unable to generate report. Please try again.",
+        variant: "destructive",
+        duration: 3000,
+      })
+    }
   }
 
   return (
@@ -81,6 +158,10 @@ export default function SmartContractAnalyzer() {
                   <span className="hidden sm:inline">Export Report</span>
                 </Button>
               )}
+              <Button variant="outline" size="sm" onClick={() => setShowSettings(true)} className="gap-2">
+                <Settings className="h-4 w-4" />
+                <span className="hidden sm:inline">Settings</span>
+              </Button>
               <ModeToggle />
             </div>
           </motion.div>
@@ -88,7 +169,7 @@ export default function SmartContractAnalyzer() {
           {/* Main Content */}
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
             <div className="overflow-x-auto mb-6 lg:mb-8">
-              <TabsList className="grid w-full grid-cols-7 min-w-[700px] lg:min-w-0">
+              <TabsList className="grid w-full grid-cols-7 min-w-[700px] lg:min-w-0 gap-1 lg:gap-0">
                 <TabsTrigger value="upload" className="flex items-center gap-1 lg:gap-2 text-xs lg:text-sm">
                   <Upload className="w-3 h-3 lg:w-4 lg:h-4" />
                   <span className="hidden sm:inline">Upload</span>
@@ -151,7 +232,33 @@ export default function SmartContractAnalyzer() {
               transition={{ duration: 0.3 }}
             >
               <TabsContent value="upload">
-                <ContractUpload onContractAnalyzed={handleContractAnalyzed} />
+                <ContractUpload
+                  onContractAnalyzed={handleContractAnalyzed}
+                  onAnalysisStart={handleAnalysisStart}
+                  onAnalysisError={handleAnalysisError}
+                />
+                {error && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mt-6"
+                  >
+                    <Card className="border-red-200 bg-red-50 dark:border-red-800 dark:bg-red-900/20">
+                      <CardContent className="p-6">
+                        <div className="flex items-center gap-3">
+                          <AlertTriangle className="h-5 w-5 text-red-500" />
+                          <div className="flex-1">
+                            <h3 className="font-medium text-red-800 dark:text-red-200">Analysis Failed</h3>
+                            <p className="text-sm text-red-600 dark:text-red-300 mt-1">{error}</p>
+                          </div>
+                          <Button variant="outline" size="sm" onClick={retryAnalysis}>
+                            Try Again
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                )}
               </TabsContent>
 
               <TabsContent value="summary">{contractData && <ContractSummary data={contractData} />}</TabsContent>
@@ -171,6 +278,7 @@ export default function SmartContractAnalyzer() {
           </Tabs>
         </div>
         <Toaster />
+        <AppSettings isOpen={showSettings} onClose={() => setShowSettings(false)} />
       </div>
   )
 }
