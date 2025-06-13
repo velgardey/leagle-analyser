@@ -14,7 +14,6 @@ json_match = re.search(r'```json\s*(.*?)\s*```', ai_response, re.DOTALL)
 if json_match:
     json_text = json_match.group(1)
     print(f"Extracted JSON length: {len(json_text)}")
-    
     try:
         ai_data = json.loads(json_text)
         print(f"Successfully parsed JSON")

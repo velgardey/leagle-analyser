@@ -415,7 +415,7 @@ export default function ContractUpload({ onContractAnalyzed, onAnalysisStart, on
                     <h4 className="font-semibold">Gemini AI Analysis</h4>
                   </div>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Advanced AI-powered contract analysis using Google's Gemini 1.5 Flash for comprehensive
+                    Advanced AI-powered contract analysis using Google's Gemini 2.5 Flash for comprehensive
                     understanding
                   </p>
                 </motion.div>
@@ -520,7 +520,7 @@ export default function ContractUpload({ onContractAnalyzed, onAnalysisStart, on
                     step: 2,
                     title: "Gemini AI Analysis",
                     description:
-                      "Google's Gemini 1.5 Flash AI analyzes the contract comprehensively, identifying parties, terms, risks, and relationships.",
+                      "Google's Gemini 2.5 Flash AI analyzes the contract comprehensively, identifying parties, terms, risks, and relationships.",
                     icon: <Brain className="w-6 h-6" />,
                   },
                   {
